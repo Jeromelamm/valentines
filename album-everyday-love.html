@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our special day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 40px;
+            color: white;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .header-content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .album-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-card img,
+        .photo-card video {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-card video {
+            background: #000;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1em;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-placeholder .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .photo-caption {
+            padding: 20px;
+            background: white;
+        }
+
+        .photo-caption h3 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .photo-caption p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .photo-card img,
+            .photo-placeholder {
+                height: 300px;
+            }
+
+            .back-button {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-button">← Back to Albums</a>
+            <div class="header-content">
+                <h1>💑 Our special day</h1>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="album-description">
+                <p>
+                    The day I asked you to be my girlfriendddddd!
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Video Card -->
+                <div class="photo-card" onclick="openLightbox(0)">
+                    <video autoplay loop muted playsinline>
+                        <source src="images/special.mp4" type="video/mp4">
+                    </video>
+                    <div class="photo-caption">
+                        <h3>My first time getting flowers for you 😂</h3>
+                        <p>Then I asked you to be my girlfriend!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Full size photo">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script>
+    const photos = document.querySelectorAll('.photo-card img, .photo-card video');
+    const captions = document.querySelectorAll('.photo-caption h3');
+
+    function openLightbox(index) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.querySelector('.lightbox-content');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        if (photos[index]) {
+            // Clear previous content
+            const existingMedia = lightboxContent.querySelector('img, video');
+            if (existingMedia) {
+                existingMedia.remove();
+            }
+            
+            // Check if it's a video or image
+            if (photos[index].tagName === 'VIDEO') {
+                const video = document.createElement('video');
+                video.id = 'lightbox-video';
+                video.src = photos[index].querySelector('source').src;
+                video.controls = true;
+                video.autoplay = true;
+                video.loop = true;
+                video.style.maxWidth = '100%';
+                video.style.maxHeight = '90vh';
+                video.style.borderRadius = '10px';
+                lightboxContent.insertBefore(video, lightboxCaption);
+            } else {
+                const img = document.createElement('img');
+                img.id = 'lightbox-img';
+                img.src = photos[index].src;
+                img.alt = 'Full size photo';
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '90vh';
+                img.style.borderRadius = '10px';
+                lightboxContent.insertBefore(img, lightboxCaption);
+            }
+            
+            lightboxCaption.textContent = captions[index].textContent;
+            lightbox.classList.add('active');
+        }
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        const video = document.getElementById('lightbox-video');
+        if (video) {
+            video.pause();
+        }
+        lightbox.classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
+</body>
+</html>

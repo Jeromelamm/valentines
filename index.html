@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Our moments together so far!</h1>
+        </div>
+
+        <div class="content">
+            <div class="message">
+                <h2>Dear Khamly,</h2>
+                <p>
+                    What we have may have started unexpectedly, but it’s become something I genuinely value. From gym sessions to quiet mornings, from laughter to the comfortable silences, every moment with you feels intentional and real.
+                </p>
+                <p>
+                    I love the way you smile and laugh, but even more, I admire the way you think and the way you care.  I appreciate the big moments, and I cherish the small ones, the simple ways you choose to show up for us.
+                </p>
+
+                <p>
+                    I put together these photo albums to capture the moments and the days we spent together, big and small!
+                    Click on any album to revisit the memories we’ve created so far ❤️
+                </p>    
+            </div>
+
+            <div class="albums-section">
+                <h2>✨ Our Memory Albums ✨</h2>
+                <div class="albums-grid">
+                    
+                    <!-- Album 1 -->
+                    <a href="album-first-date.html" class="album-card">
+                        <img src="images/gym1.jpg" alt="Our First Date" class="album-cover">
+                        <div class="album-info">
+                            <h3>Gym dates!</h3>
+                            <p>The place where we met hehe</p>
+                            <p class="photo-count">Click to view photos →</p>
+                        </div>
+                    </a>
+
+                    <!-- Album 2 -->
+                    <a href="album-adventures.html" class="album-card">
+                        <img src="images/tgt.jpg" alt="Our First Date" class="album-cover">
+                        <div class="album-info">
+                            <h3>Our dates!</h3>
+                            <p>All the food and places we've been to together!</p>
+                            <p class="photo-count">Click to view photos →</p>
+                        </div>
+                    </a>
+
+                    <!-- Album 3 -->
+                    <a href="album-special-moments.html" class="album-card">
+                        <img src="images/holdhands1.jpg" alt="Our First Date" class="album-cover">
+                        <div class="album-info">
+                            <h3>Holding handsss!</h3>
+                            <p class="photo-count">Click to view photos →</p>
+                        </div>
+                    </a>
+
+                    <!-- Album 4 -->
+                    <a href="album-everyday-love.html" class="album-card">
+                        <img src="images/04.jpg" alt="Our First Date" class="album-cover">
+                        <div class="album-info">
+                            <h3>04/02/2026</h3>
+                            <p class="photo-count">Click to view photos →</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="response-section">
+    <h1 style="font-size: 2.5em; margin-bottom: 20px; color: #764ba2;"> So Khamly… will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+                    <button class="btn btn-yes" onclick="sayYes()">Yes! 💖</button>
+                    <button class="btn btn-no" onclick="sayNo()">Let me think...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sayYes() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    heartsContainer.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 6000);
+                }, i * 100);
+            }
+
+            alert('🎉 Yay! You just made me the happiest person alive! 💕');
+        }
+
+        function sayNo() {
+            const noButton = event.target;
+            const responses = [
+                "Are you sure? 🥺",
+                "Please reconsider? 💔",
+                "Just think about it? 🤔",
+                "My heart is breaking... 😢",
+                "One more chance? 🙏"
+            ];
+            
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            noButton.textContent = randomResponse;
+            
+            const yesButton = document.querySelector('.btn-yes');
+            const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize + 2) + 'px';
+            yesButton.style.padding = '22px 55px';
+        }
+    </script>
+</body>
+</html>

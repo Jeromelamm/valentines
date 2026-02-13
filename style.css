@@ -1,0 +1,261 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .message {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .message h2 {
+            color: #f5576c;
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .message p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .albums-section {
+            margin: 60px 0;
+        }
+
+        .albums-section h2 {
+            text-align: center;
+            color: #764ba2;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .album-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .album-cover {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .album-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+        }
+
+        .album-info {
+            padding: 25px;
+            background: white;
+        }
+
+        .album-info h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .album-info p {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .album-info .photo-count {
+            color: #f5576c;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .response-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+
+        .response-section h2 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-no {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .btn-no:hover {
+            background: #d0d0d0;
+            transform: scale(0.95);
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            animation: float 6s ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .message h2 {
+                font-size: 1.5em;
+            }
+
+            .message p {
+                font-size: 1em;
+            }
+
+            .albums-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .response-section h2 {
+                font-size: 1.8em;
+            }
+
+            .btn {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+        }
